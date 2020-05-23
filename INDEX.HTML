@@ -1,0 +1,196 @@
+<!doctype.html>
+<html>
+
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxsfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<!--timer-->
+    
+       
+<!--    icon-->
+
+  <script src="https://kit.fontawesome.com/4609681b3c.js" crossorigin="anonymous"></script>
+<!--   custom css-->
+<link  rel="stylesheet" href="style.css" >
+    
+</head>
+<body>
+    <div class=" container-fluid first">
+        <div class="container-fluid text-center klop">
+        <h1 class="p-1 text-center text-white"><strong>P U M A</strong></h1>
+            <h2 class="text-center "><i class=" log fab fa-buysellads fa-3x m-1 text-white"></i></h2>
+        
+            <ul class="countdown row">
+      <li class="col-3  text-center">
+        <span class="days "></span>
+        <p class="timeRefDays"></p>
+      </li>
+      <li class="col-3  text-center">
+        <span class="hours"></span>
+        <p class="timeRefHours"></p>
+      </li>
+     
+            <li class="col-3   text-center">
+        <span class="minutes "></span>
+        <p class="timeRefMinutes"></p>
+                <li class="col-3  text-center">
+        <span class="seconds"></span>
+        <p class="timeRefSeconds"></p>
+      </li>
+           
+      </li>
+	</ul>
+                 <script>(function($) {
+    $.fn.countdown = function(options, callback) {
+
+      //custom 'this' selector
+      var thisEl = $(this);
+
+      //array of custom settings
+      var settings = { 
+        'date': null,
+        'format': null
+      };
+
+      //append the settings array to options
+      if(options) {
+        $.extend(settings, options);
+      }
+
+      //main countdown function
+      var countdown_proc = function () {
+
+        var eventDate = Date.parse(settings['date']) / 1000;
+        var currentDate = Math.floor($.now() / 1000);
+
+        if(eventDate <= currentDate) {
+          callback.call(this);
+          clearInterval(interval);
+        };
+
+        var seconds = eventDate - currentDate;
+
+        var days = Math.floor(seconds / (60 * 60 * 24)); //calculate the number of days
+        seconds -= days * 60 * 60 * 24; //update the seconds variable with no. of days removed
+
+        var hours = Math.floor(seconds / (60 * 60));
+        seconds -= hours * 60 * 60; //update the seconds variable with no. of hours removed
+
+        var minutes = Math.floor(seconds / 60);
+        seconds -= minutes * 60; //update the seconds variable with no. of minutes removed
+
+        //conditional Ss
+        if (days == 1) { thisEl.find(".timeRefDays").text("Day"); } else { thisEl.find(".timeRefDays").text("Days"); }
+        if (hours == 1) { thisEl.find(".timeRefHours").text("Hour"); } else { thisEl.find(".timeRefHours").text("Hours"); }
+        if (minutes == 1) { thisEl.find(".timeRefMinutes").text("Minute"); } else { thisEl.find(".timeRefMinutes").text("Minutes"); }
+        if (seconds == 1) { thisEl.find(".timeRefSeconds").text("Second"); } else { thisEl.find(".timeRefSeconds").text("Seconds"); }
+
+        //logic for the two_digits ON setting
+        if(settings['format'] == "on") {
+          days = (String(days).length >= 2) ? days : "0" + days;
+          hours = (String(hours).length >= 2) ? hours : "0" + hours;
+          minutes = (String(minutes).length >= 2) ? minutes : "0" + minutes;
+          seconds = (String(seconds).length >= 2) ? seconds : "0" + seconds;
+        }
+
+        //update the countdown's html values.
+        if(!isNaN(eventDate)) {
+          thisEl.find(".days").text(days);
+          thisEl.find(".hours").text(hours);
+          thisEl.find(".minutes").text(minutes);
+          thisEl.find(".seconds").text(seconds);
+        } else { 
+          alert("Invalid date. Here's an example: 12 Tuesday 2012 17:30:00");
+          clearInterval(interval); 
+        }
+      }
+
+      //run the function
+      countdown_proc();
+
+      //loop the function
+      interval = setInterval(countdown_proc, 1000);
+
+    }
+}) (jQuery);
+
+
+//Call countdown plugin
+$(".countdown").countdown({
+  date: "2 june 2020 12:19:00", // add the countdown's end date (i.e. 3 november 2012 12:00:00)
+  format: "on" // on (03:07:52) | off (3:7:52) - two_digits set to ON maintains layout consistency
+},
+
+function() {
+
+  // the code here will run when the countdown ends
+  alert("done!")
+
+});
+</script>
+
+            
+             </div>
+    </div>
+    <div class="container p-1">
+    
+    <h2 class="text-center p-1 pt-2"><strong>About Piuma, the best Coming Soon Theme</strong></h2>
+    <p class="lead text-center p-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur./p></div>
+
+   
+<div class="row text-center  bg-light m-1 p-1">
+<div class="col-md-4 p-1">
+    <i class="fab fa-buysellads fa-4x m-1"></i>
+    <h3 class="text-center m-1">sffdfsds</h3>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    
+</div>
+<div class="col-md-4  p-1">
+    <i class="fab fa-buysellads fa-4x m-1"></i>
+    <h3 class="text-center m-1">sffdfsds</h3>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    
+    </div>
+<div class="col-md-4  p-1">
+    <i class="fab fa-buysellads fa-4x m-1"></i>
+    <h3 class="text-center m-1">sffdfsds</h3>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    
+    </div>
+
+</div>
+    <div class="container-fluid maa">
+    <h1 class="text-center lo">HARSHIT KAUSHIK</h1>
+    <DIV class="text-center po">
+        <i class="fab fa-buysellads fa-3x m-1"></i>
+        <i class="fab fa-buysellads fa-3x m-1"></i>
+        <i class="fab fa-buysellads fa-3x m-1"></i>
+        <i class="fab fa-buysellads fa-3x m-1"></i>
+        </DIV>
+    </div>
+<!--    fdsdfsd-->
+    <div class="container-fluid bap text-center">
+<h1 class="text-center beta">Stay tuned and don't forget Sign up for latest Updates!</h1>
+    <input type="text" class=" text-center form-cantrol beti" placeholder="Name">
+        
+    </div>
+<!--    sdsad-->
+    <div class="container-fluid fut">
+    <div class="row klop">
+    <div class="col-lg-6 mt-3 "> <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"></div>
+    <div class="col-lg-6 mt-3"> <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm"></div>
+
+    
+    <div class="col-12 hlop mt-5">
+       <input type="text" class="form-control klop" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+
+        </div>
+        </div>
+    </div>
+    </body>
+
+</html>    
